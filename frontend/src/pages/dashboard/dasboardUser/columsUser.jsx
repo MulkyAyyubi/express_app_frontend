@@ -1,5 +1,6 @@
 import { Trash2, Info, Pencil } from "lucide-react";
 import { deleteUser } from "@/utils/api/users";
+import { useNavigate } from "react-router-dom";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,6 +17,7 @@ export const columns = [
   {
     header: "No",
     accessorFn: (originalRow, index) => index + 1,
+
   },
   {
     accessorKey: "fullname",
@@ -45,10 +47,13 @@ export const columns = [
     accessorKey: "role",
     header: "Role",
   },
+
   {
     header: "Aksi",
     cell: ({ row }) => {
       const id = row.original.id;
+       // eslint-disable-next-line react-hooks/rules-of-hooks
+       const navigate = useNavigate();
 
       // handler delete user
 
@@ -65,7 +70,7 @@ export const columns = [
       return (
         <div>
           {/* Button Info */}
-          <button onClick={() => console.log("Ini Butto Info`")}>
+          <button onClick={() => navigate(`/dashboard/user/${id}`)}>
             <Info size={20} />
           </button>
           {/* Button Edit */}
